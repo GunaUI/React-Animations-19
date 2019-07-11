@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CSSTransition from "react-transition-group/CSSTransition";
 import Transition from "react-transition-group/Transition";
 
 import "./App.css";
@@ -72,13 +73,11 @@ class App extends Component {
           <Backdrop show={this.state.modalIsOpen} />
         ) : null}
 
-        <Transition in={this.state.modalIsOpen} timeout={animationTiming} mountOnEnter unmountOnExit>
-        {state => 
-          (
-            <Modal show={state} closed={this.closeModal} />
-          )
-        }
-        </Transition>
+        <CSSTransition in={this.state.modalIsOpen} timeout={animationTiming} mountOnEnter unmountOnExit classNames="fade-slide">
+
+            <Modal show={this.state.modalIsOpen} closed={this.closeModal} />
+            
+        </CSSTransition>
 
         <button className="Button" onClick={this.showModal}>
           Open Modal
